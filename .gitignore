@@ -3,3 +3,4 @@
 *.impl
 build
 logs
+demo-h2/data
