@@ -1,0 +1,79 @@
+if (!project.plugins.findPlugin(com.zeroc.gradle.icebuilder.slice.SlicePlugin)) {
+    project.apply(plugin: com.zeroc.gradle.icebuilder.slice.SlicePlugin)
+}
+
+if(this.cppPlatform) {
+    slice.cppPlatform = this.cppPlatform
+}
+
+if(this.cppConfiguration) {
+    slice.cppConfiguration = this.cppConfiguration
+}
+
+def env = System.getenv()
+
+if(this.iceHome) {
+    slice.iceHome = this.iceHome
+}
+
+buildscript {
+
+    ext.iceMavenRepo = System.env.ICE_MAVEN_REPOSITORY ? System.env.ICE_MAVEN_REPOSITORY : "repo.zeroc.com"
+    ext.useLocalOnly = gradle.startParameter.isOffline()
+
+    //
+    // If iceBuilderHome is set add its lib directory it to the local maven repositories
+    // so we can build using a local plugin version
+    //
+    if (iceBuilderHome) {
+        def builder  = new File([iceBuilderHome, "build", "libs"].join(File.separator))
+
+        if(builder.exists()) {
+            repositories {
+                flatDir dirs: "file://${builder.getCanonicalPath()}"
+            }
+        }
+    }
+
+    if(new File("/usr/share/maven-repo").exists()){
+        repositories {
+            maven {
+                url "file:///usr/share/maven-repo"
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath group: "${iceBuilderClassPath}", name: 'slice', version: "${iceBuilderVersion}"
+    }
+}
+
+ext.generatedDir = "$project.projectDir/src"
+
+if(!(project.hasProperty('android') && project.android.sourceSets)) {
+    compileJava {
+        options.debug = debug
+    }
+}
+
+// Check if we need to append version suffix to jar files
+ext.versionSuffix = ""
+def iceJar = new File("${slice.jarDir}/ice-${slice.iceVersion}.jar")
+if(iceJar.exists()) {
+    ext.versionSuffix = "-${slice.iceVersion}"
+}
+
+def localDependency(artifactId) {
+    // slice.iceVersion = 3.6.3
+    return "com.zeroc:${artifactId}:${slice.iceVersion}"
+}
+
+ext {
+    localDependency = this.&localDependency
+}

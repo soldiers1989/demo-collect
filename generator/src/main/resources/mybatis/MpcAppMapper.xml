@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.MpcAppMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.MpcApp">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column=""desc"" jdbcType="VARCHAR" property=""desc"" />
+    <result column="visit_url" jdbcType="VARCHAR" property="visit_url" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="party_number" jdbcType="INTEGER" property="party_number" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="classify_code" jdbcType="VARCHAR" property="classify_code" />
+    <result column="classify_name" jdbcType="VARCHAR" property="classify_name" />
+    <result column="system_code" jdbcType="VARCHAR" property="system_code" />
+    <result column="system_name" jdbcType="VARCHAR" property="system_name" />
+    <result column="system_index" jdbcType="VARCHAR" property="system_index" />
+    <result column="publish_type" jdbcType="VARCHAR" property="publish_type" />
+    <result column="publish_name" jdbcType="VARCHAR" property="publish_name" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publish_time" />
+    <result column="dowload_total" jdbcType="INTEGER" property="dowload_total" />
+    <result column="calculated_total" jdbcType="INTEGER" property="calculated_total" />
+    <result column="user_id" jdbcType="INTEGER" property="user_id" />
+    <result column="icon" jdbcType="LONGVARCHAR" property="icon" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mpc_app
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.MpcApp">
+    insert into mpc_app (id, name, "desc", 
+      visit_url, type, status, 
+      party_number, update_time, classify_code, 
+      classify_name, system_code, system_name, 
+      system_index, publish_type, publish_name, 
+      publish_time, dowload_total, calculated_total, 
+      user_id, icon)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{"desc",jdbcType=VARCHAR}, 
+      #{visit_url,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{party_number,jdbcType=INTEGER}, #{update_time,jdbcType=TIMESTAMP}, #{classify_code,jdbcType=VARCHAR}, 
+      #{classify_name,jdbcType=VARCHAR}, #{system_code,jdbcType=VARCHAR}, #{system_name,jdbcType=VARCHAR}, 
+      #{system_index,jdbcType=VARCHAR}, #{publish_type,jdbcType=VARCHAR}, #{publish_name,jdbcType=VARCHAR}, 
+      #{publish_time,jdbcType=TIMESTAMP}, #{dowload_total,jdbcType=INTEGER}, #{calculated_total,jdbcType=INTEGER}, 
+      #{user_id,jdbcType=INTEGER}, #{icon,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.MpcApp">
+    update mpc_app
+    set name = #{name,jdbcType=VARCHAR},
+      "desc" = #{"desc",jdbcType=VARCHAR},
+      visit_url = #{visit_url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      party_number = #{party_number,jdbcType=INTEGER},
+      update_time = #{update_time,jdbcType=TIMESTAMP},
+      classify_code = #{classify_code,jdbcType=VARCHAR},
+      classify_name = #{classify_name,jdbcType=VARCHAR},
+      system_code = #{system_code,jdbcType=VARCHAR},
+      system_name = #{system_name,jdbcType=VARCHAR},
+      system_index = #{system_index,jdbcType=VARCHAR},
+      publish_type = #{publish_type,jdbcType=VARCHAR},
+      publish_name = #{publish_name,jdbcType=VARCHAR},
+      publish_time = #{publish_time,jdbcType=TIMESTAMP},
+      dowload_total = #{dowload_total,jdbcType=INTEGER},
+      calculated_total = #{calculated_total,jdbcType=INTEGER},
+      user_id = #{user_id,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, "desc", visit_url, type, status, party_number, update_time, classify_code, 
+    classify_name, system_code, system_name, system_index, publish_type, publish_name, 
+    publish_time, dowload_total, calculated_total, user_id, icon
+    from mpc_app
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, "desc", visit_url, type, status, party_number, update_time, classify_code, 
+    classify_name, system_code, system_name, system_index, publish_type, publish_name, 
+    publish_time, dowload_total, calculated_total, user_id, icon
+    from mpc_app
+  </select>
+</mapper>

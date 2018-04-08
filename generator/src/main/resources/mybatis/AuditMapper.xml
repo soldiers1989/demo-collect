@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.AuditMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.Audit">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="system_code" jdbcType="VARCHAR" property="system_code" />
+    <result column="system_name" jdbcType="VARCHAR" property="system_name" />
+    <result column="party_number" jdbcType="INTEGER" property="party_number" />
+    <result column="classify_code" jdbcType="VARCHAR" property="classify_code" />
+    <result column="classify_name" jdbcType="VARCHAR" property="classify_name" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="login_name" jdbcType="VARCHAR" property="login_name" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contact_phone" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="apply_time" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit_desc" jdbcType="VARCHAR" property="audit_desc" />
+    <result column="audit_user_name" jdbcType="VARCHAR" property="audit_user_name" />
+    <result column="audit_user_id" jdbcType="INTEGER" property="audit_user_id" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="audit_time" />
+    <result column="apply_id" jdbcType="INTEGER" property="apply_id" />
+    <result column="apply_user_name" jdbcType="VARCHAR" property="apply_user_name" />
+    <result column="apply_user_id" jdbcType="INTEGER" property="apply_user_id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from audit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.Audit">
+    insert into audit (id, type, name, 
+      system_code, system_name, party_number, 
+      classify_code, classify_name, source, 
+      login_name, contact_phone, apply_time, 
+      status, audit_desc, audit_user_name, 
+      audit_user_id, audit_time, apply_id, 
+      apply_user_name, apply_user_id)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{system_code,jdbcType=VARCHAR}, #{system_name,jdbcType=VARCHAR}, #{party_number,jdbcType=INTEGER}, 
+      #{classify_code,jdbcType=VARCHAR}, #{classify_name,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, 
+      #{login_name,jdbcType=VARCHAR}, #{contact_phone,jdbcType=VARCHAR}, #{apply_time,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{audit_desc,jdbcType=VARCHAR}, #{audit_user_name,jdbcType=VARCHAR}, 
+      #{audit_user_id,jdbcType=INTEGER}, #{audit_time,jdbcType=TIMESTAMP}, #{apply_id,jdbcType=INTEGER}, 
+      #{apply_user_name,jdbcType=VARCHAR}, #{apply_user_id,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.Audit">
+    update audit
+    set type = #{type,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      system_code = #{system_code,jdbcType=VARCHAR},
+      system_name = #{system_name,jdbcType=VARCHAR},
+      party_number = #{party_number,jdbcType=INTEGER},
+      classify_code = #{classify_code,jdbcType=VARCHAR},
+      classify_name = #{classify_name,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      login_name = #{login_name,jdbcType=VARCHAR},
+      contact_phone = #{contact_phone,jdbcType=VARCHAR},
+      apply_time = #{apply_time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      audit_desc = #{audit_desc,jdbcType=VARCHAR},
+      audit_user_name = #{audit_user_name,jdbcType=VARCHAR},
+      audit_user_id = #{audit_user_id,jdbcType=INTEGER},
+      audit_time = #{audit_time,jdbcType=TIMESTAMP},
+      apply_id = #{apply_id,jdbcType=INTEGER},
+      apply_user_name = #{apply_user_name,jdbcType=VARCHAR},
+      apply_user_id = #{apply_user_id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, type, name, system_code, system_name, party_number, classify_code, classify_name, 
+    source, login_name, contact_phone, apply_time, status, audit_desc, audit_user_name, 
+    audit_user_id, audit_time, apply_id, apply_user_name, apply_user_id
+    from audit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, type, name, system_code, system_name, party_number, classify_code, classify_name, 
+    source, login_name, contact_phone, apply_time, status, audit_desc, audit_user_name, 
+    audit_user_id, audit_time, apply_id, apply_user_name, apply_user_id
+    from audit
+  </select>
+</mapper>

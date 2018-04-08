@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.FileRelMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.FileRel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="owner_id" jdbcType="VARCHAR" property="owner_id" />
+    <result column="owner_type" jdbcType="VARCHAR" property="owner_type" />
+    <result column="group_name" jdbcType="VARCHAR" property="group_name" />
+    <result column="remote_file_name" jdbcType="VARCHAR" property="remote_file_name" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="file_name" jdbcType="VARCHAR" property="file_name" />
+    <result column="local_file_name" jdbcType="VARCHAR" property="local_file_name" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from file_rel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.FileRel">
+    insert into file_rel (id, owner_id, owner_type, 
+      group_name, remote_file_name, path, 
+      file_name, local_file_name)
+    values (#{id,jdbcType=INTEGER}, #{owner_id,jdbcType=VARCHAR}, #{owner_type,jdbcType=VARCHAR}, 
+      #{group_name,jdbcType=VARCHAR}, #{remote_file_name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{file_name,jdbcType=VARCHAR}, #{local_file_name,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.FileRel">
+    update file_rel
+    set owner_id = #{owner_id,jdbcType=VARCHAR},
+      owner_type = #{owner_type,jdbcType=VARCHAR},
+      group_name = #{group_name,jdbcType=VARCHAR},
+      remote_file_name = #{remote_file_name,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      file_name = #{file_name,jdbcType=VARCHAR},
+      local_file_name = #{local_file_name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, owner_id, owner_type, group_name, remote_file_name, path, file_name, local_file_name
+    from file_rel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, owner_id, owner_type, group_name, remote_file_name, path, file_name, local_file_name
+    from file_rel
+  </select>
+</mapper>

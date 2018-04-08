@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.MpcRoomNodeRelMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.MpcRoomNodeRel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="node_id" jdbcType="INTEGER" property="node_id" />
+    <result column="room_id" jdbcType="INTEGER" property="room_id" />
+    <result column="party_time" jdbcType="TIMESTAMP" property="party_time" />
+    <result column="party_status" jdbcType="INTEGER" property="party_status" />
+    <result column="calculated_total" jdbcType="INTEGER" property="calculated_total" />
+    <result column="app_id" jdbcType="INTEGER" property="app_id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mpc_room_node_rel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.MpcRoomNodeRel">
+    insert into mpc_room_node_rel (id, node_id, room_id, 
+      party_time, party_status, calculated_total, 
+      app_id)
+    values (#{id,jdbcType=INTEGER}, #{node_id,jdbcType=INTEGER}, #{room_id,jdbcType=INTEGER}, 
+      #{party_time,jdbcType=TIMESTAMP}, #{party_status,jdbcType=INTEGER}, #{calculated_total,jdbcType=INTEGER}, 
+      #{app_id,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.MpcRoomNodeRel">
+    update mpc_room_node_rel
+    set node_id = #{node_id,jdbcType=INTEGER},
+      room_id = #{room_id,jdbcType=INTEGER},
+      party_time = #{party_time,jdbcType=TIMESTAMP},
+      party_status = #{party_status,jdbcType=INTEGER},
+      calculated_total = #{calculated_total,jdbcType=INTEGER},
+      app_id = #{app_id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, node_id, room_id, party_time, party_status, calculated_total, app_id
+    from mpc_room_node_rel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, node_id, room_id, party_time, party_status, calculated_total, app_id
+    from mpc_room_node_rel
+  </select>
+</mapper>

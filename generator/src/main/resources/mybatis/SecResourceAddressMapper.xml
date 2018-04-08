@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.SecResourceAddressMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.SecResourceAddress">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="resource_id" jdbcType="INTEGER" property="resource_id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sec_resource_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.SecResourceAddress">
+    insert into sec_resource_address (id, resource_id, name, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{resource_id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.SecResourceAddress">
+    update sec_resource_address
+    set resource_id = #{resource_id,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, resource_id, name, url
+    from sec_resource_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, resource_id, name, url
+    from sec_resource_address
+  </select>
+</mapper>

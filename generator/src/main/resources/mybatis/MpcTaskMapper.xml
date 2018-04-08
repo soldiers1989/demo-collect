@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.MpcTaskMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.MpcTask">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="begin_time" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="end_time" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="mpc_room_name" jdbcType="VARCHAR" property="mpc_room_name" />
+    <result column="mpc_app_name" jdbcType="VARCHAR" property="mpc_app_name" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mpc_task
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.MpcTask">
+    insert into mpc_task (id, begin_time, end_time, 
+      status, mpc_room_name, mpc_app_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{begin_time,jdbcType=TIMESTAMP}, #{end_time,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{mpc_room_name,jdbcType=VARCHAR}, #{mpc_app_name,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.MpcTask">
+    update mpc_task
+    set begin_time = #{begin_time,jdbcType=TIMESTAMP},
+      end_time = #{end_time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      mpc_room_name = #{mpc_room_name,jdbcType=VARCHAR},
+      mpc_app_name = #{mpc_app_name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, begin_time, end_time, status, mpc_room_name, mpc_app_name
+    from mpc_task
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, begin_time, end_time, status, mpc_room_name, mpc_app_name
+    from mpc_task
+  </select>
+</mapper>

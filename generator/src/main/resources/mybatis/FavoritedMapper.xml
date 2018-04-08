@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.FavoritedMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.Favorited">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="user_id" />
+    <result column="favorited_id" jdbcType="VARCHAR" property="favorited_id" />
+    <result column="statistics_id" jdbcType="INTEGER" property="statistics_id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <insert id="insert" parameterType="com.maimieng.model.Favorited">
+    insert into favorited (id, user_id, favorited_id, 
+      statistics_id, create_time, type
+      )
+    values (#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{favorited_id,jdbcType=VARCHAR}, 
+      #{statistics_id,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, favorited_id, statistics_id, create_time, type
+    from favorited
+  </select>
+</mapper>

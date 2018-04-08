@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.MpcArithmeticMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.MpcArithmetic">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column=""desc"" jdbcType="VARCHAR" property=""desc"" />
+    <result column="character" jdbcType="VARCHAR" property="character" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="classify_code" jdbcType="VARCHAR" property="classify_code" />
+    <result column="classify_name" jdbcType="VARCHAR" property="classify_name" />
+    <result column="publish_type" jdbcType="VARCHAR" property="publish_type" />
+    <result column="publish_name" jdbcType="VARCHAR" property="publish_name" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publish_time" />
+    <result column="download_total" jdbcType="INTEGER" property="download_total" />
+    <result column="install_total" jdbcType="INTEGER" property="install_total" />
+    <result column="calculated_total" jdbcType="INTEGER" property="calculated_total" />
+    <result column="favorited_count" jdbcType="INTEGER" property="favorited_count" />
+    <result column="user_id" jdbcType="INTEGER" property="user_id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mpc_arithmetic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.MpcArithmetic">
+    insert into mpc_arithmetic (id, name, "desc", 
+      character, source, status, 
+      update_time, classify_code, classify_name, 
+      publish_type, publish_name, publish_time, 
+      download_total, install_total, calculated_total, 
+      favorited_count, user_id)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{"desc",jdbcType=VARCHAR}, 
+      #{character,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{update_time,jdbcType=TIMESTAMP}, #{classify_code,jdbcType=VARCHAR}, #{classify_name,jdbcType=VARCHAR}, 
+      #{publish_type,jdbcType=VARCHAR}, #{publish_name,jdbcType=VARCHAR}, #{publish_time,jdbcType=TIMESTAMP}, 
+      #{download_total,jdbcType=INTEGER}, #{install_total,jdbcType=INTEGER}, #{calculated_total,jdbcType=INTEGER}, 
+      #{favorited_count,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.MpcArithmetic">
+    update mpc_arithmetic
+    set name = #{name,jdbcType=VARCHAR},
+      "desc" = #{"desc",jdbcType=VARCHAR},
+      character = #{character,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      update_time = #{update_time,jdbcType=TIMESTAMP},
+      classify_code = #{classify_code,jdbcType=VARCHAR},
+      classify_name = #{classify_name,jdbcType=VARCHAR},
+      publish_type = #{publish_type,jdbcType=VARCHAR},
+      publish_name = #{publish_name,jdbcType=VARCHAR},
+      publish_time = #{publish_time,jdbcType=TIMESTAMP},
+      download_total = #{download_total,jdbcType=INTEGER},
+      install_total = #{install_total,jdbcType=INTEGER},
+      calculated_total = #{calculated_total,jdbcType=INTEGER},
+      favorited_count = #{favorited_count,jdbcType=INTEGER},
+      user_id = #{user_id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, "desc", character, source, status, update_time, classify_code, classify_name, 
+    publish_type, publish_name, publish_time, download_total, install_total, calculated_total, 
+    favorited_count, user_id
+    from mpc_arithmetic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, "desc", character, source, status, update_time, classify_code, classify_name, 
+    publish_type, publish_name, publish_time, download_total, install_total, calculated_total, 
+    favorited_count, user_id
+    from mpc_arithmetic
+  </select>
+</mapper>

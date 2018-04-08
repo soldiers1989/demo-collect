@@ -5,26 +5,10 @@ dependencies {
     compile "org.mybatis:mybatis:3.4.4"
     compile 'cglib:cglib:3.2.5'
     compile 'com.github.pagehelper:pagehelper:5.1.2'
+    compile "com.googlecode.concurrent-locks:concurrent-locks:1.0.0"
+    compile "com.google.guava:guava:16.0.1"
 
-    compile "ch.qos.logback:logback-classic:1.1.7"
-    compile "ch.qos.logback:logback-core:1.1.7"
-    compile "org.slf4j:slf4j-api:1.7.7"
-
-    // 日志桥接
-    compile "org.slf4j:slf4j-api:1.7.7"
-    compile "org.slf4j:log4j-over-slf4j:1.7.7"
-    compile "org.slf4j:jul-to-slf4j:1.7.7"
-    compile "org.slf4j:jcl-over-slf4j:1.7.7"
 }
 
 
 
-task "create-dir" << {
-    sourceSets*.java.srcDirs*.each {
-        it.mkdirs()
-    }
-
-    sourceSets*.resources.srcDirs*.each {
-        it.mkdirs()
-    }
-}

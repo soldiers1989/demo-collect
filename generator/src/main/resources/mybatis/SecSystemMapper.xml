@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.SecSystemMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.SecSystem">
+    <id column="domain" jdbcType="VARCHAR" property="domain" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="port" jdbcType="VARCHAR" property="port" />
+    <result column="context_path" jdbcType="VARCHAR" property="context_path" />
+    <result column="homepage" jdbcType="VARCHAR" property="homepage" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sec_system
+    where domain = #{domain,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.SecSystem">
+    insert into sec_system (domain, name, ip, 
+      port, context_path, homepage
+      )
+    values (#{domain,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{port,jdbcType=VARCHAR}, #{context_path,jdbcType=VARCHAR}, #{homepage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.SecSystem">
+    update sec_system
+    set name = #{name,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      port = #{port,jdbcType=VARCHAR},
+      context_path = #{context_path,jdbcType=VARCHAR},
+      homepage = #{homepage,jdbcType=VARCHAR}
+    where domain = #{domain,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select domain, name, ip, port, context_path, homepage
+    from sec_system
+    where domain = #{domain,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select domain, name, ip, port, context_path, homepage
+    from sec_system
+  </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.MpcTaskPartyRelMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.MpcTaskPartyRel">
+    <result column="task_id" jdbcType="INTEGER" property="task_id" />
+    <result column="node_id" jdbcType="INTEGER" property="node_id" />
+  </resultMap>
+  <insert id="insert" parameterType="com.maimieng.model.MpcTaskPartyRel">
+    insert into mpc_task_party_rel (task_id, node_id)
+    values (#{task_id,jdbcType=INTEGER}, #{node_id,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select task_id, node_id
+    from mpc_task_party_rel
+  </select>
+</mapper>

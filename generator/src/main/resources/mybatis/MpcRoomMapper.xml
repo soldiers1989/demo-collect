@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.MpcRoomMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.MpcRoom">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="initiate_time" jdbcType="TIMESTAMP" property="initiate_time" />
+    <result column="initiate_name" jdbcType="VARCHAR" property="initiate_name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="app_name" jdbcType="VARCHAR" property="app_name" />
+    <result column="app_id" jdbcType="INTEGER" property="app_id" />
+    <result column="user_id" jdbcType="INTEGER" property="user_id" />
+    <result column="calculated_total" jdbcType="INTEGER" property="calculated_total" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mpc_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.MpcRoom">
+    insert into mpc_room (id, name, initiate_time, 
+      initiate_name, status, app_name, 
+      app_id, user_id, calculated_total
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{initiate_time,jdbcType=TIMESTAMP}, 
+      #{initiate_name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{app_name,jdbcType=VARCHAR}, 
+      #{app_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{calculated_total,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.maimieng.model.MpcRoom">
+    update mpc_room
+    set name = #{name,jdbcType=VARCHAR},
+      initiate_time = #{initiate_time,jdbcType=TIMESTAMP},
+      initiate_name = #{initiate_name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      app_name = #{app_name,jdbcType=VARCHAR},
+      app_id = #{app_id,jdbcType=INTEGER},
+      user_id = #{user_id,jdbcType=INTEGER},
+      calculated_total = #{calculated_total,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, initiate_time, initiate_name, status, app_name, app_id, user_id, 
+    calculated_total
+    from mpc_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, initiate_time, initiate_name, status, app_name, app_id, user_id, 
+    calculated_total
+    from mpc_room
+  </select>
+</mapper>

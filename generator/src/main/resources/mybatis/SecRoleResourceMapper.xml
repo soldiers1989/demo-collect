@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.SecRoleResourceMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.SecRoleResource">
+    <id column="role_id" jdbcType="INTEGER" property="role_id" />
+    <id column="resource_id" jdbcType="INTEGER" property="resource_id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from sec_role_resource
+    where role_id = #{role_id,jdbcType=INTEGER}
+      and resource_id = #{resource_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.SecRoleResource">
+    insert into sec_role_resource (role_id, resource_id)
+    values (#{role_id,jdbcType=INTEGER}, #{resource_id,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select role_id, resource_id
+    from sec_role_resource
+  </select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maimieng.mapper.SecUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.maimieng.model.SecUserRole">
+    <id column="user_id" jdbcType="INTEGER" property="user_id" />
+    <id column="role_id" jdbcType="INTEGER" property="role_id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from sec_user_role
+    where user_id = #{user_id,jdbcType=INTEGER}
+      and role_id = #{role_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.maimieng.model.SecUserRole">
+    insert into sec_user_role (user_id, role_id)
+    values (#{user_id,jdbcType=INTEGER}, #{role_id,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, role_id
+    from sec_user_role
+  </select>
+</mapper>
