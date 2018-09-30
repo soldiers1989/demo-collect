@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.HotWalletAlarmTriggerHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.HotWalletAlarmTriggerHistory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="threshold" jdbcType="DECIMAL" property="threshold" />
+    <result column="receiver_user_id" jdbcType="INTEGER" property="receiverUserId" />
+    <result column="trigger_time" jdbcType="TIMESTAMP" property="triggerTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hot_wallet_alarm_trigger_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.HotWalletAlarmTriggerHistory">
+    insert into hot_wallet_alarm_trigger_history (id, coin, threshold, 
+      receiver_user_id, trigger_time)
+    values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{threshold,jdbcType=DECIMAL}, 
+      #{receiverUserId,jdbcType=INTEGER}, #{triggerTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.HotWalletAlarmTriggerHistory">
+    update hot_wallet_alarm_trigger_history
+    set coin = #{coin,jdbcType=VARCHAR},
+      threshold = #{threshold,jdbcType=DECIMAL},
+      receiver_user_id = #{receiverUserId,jdbcType=INTEGER},
+      trigger_time = #{triggerTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, coin, threshold, receiver_user_id, trigger_time
+    from hot_wallet_alarm_trigger_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, coin, threshold, receiver_user_id, trigger_time
+    from hot_wallet_alarm_trigger_history
+  </select>
+</mapper>

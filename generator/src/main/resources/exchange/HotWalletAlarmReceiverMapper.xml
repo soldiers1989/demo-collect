@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.HotWalletAlarmReceiverMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.HotWalletAlarmReceiver">
+    <id column="coin" jdbcType="VARCHAR" property="coin" />
+    <id column="receiver_user_id" jdbcType="INTEGER" property="receiverUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from hot_wallet_alarm_receiver
+    where coin = #{coin,jdbcType=VARCHAR}
+      and receiver_user_id = #{receiverUserId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.HotWalletAlarmReceiver">
+    insert into hot_wallet_alarm_receiver (coin, receiver_user_id)
+    values (#{coin,jdbcType=VARCHAR}, #{receiverUserId,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select coin, receiver_user_id
+    from hot_wallet_alarm_receiver
+  </select>
+</mapper>

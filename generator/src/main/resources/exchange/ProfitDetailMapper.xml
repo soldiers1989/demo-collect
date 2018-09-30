@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.ProfitDetailMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.ProfitDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+    <result column="biz_promoter_type" jdbcType="VARCHAR" property="bizPromoterType" />
+    <result column="biz_promoter_code" jdbcType="VARCHAR" property="bizPromoterCode" />
+    <result column="biz_time" jdbcType="TIMESTAMP" property="bizTime" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="turnover" jdbcType="DECIMAL" property="turnover" />
+    <result column="fee" jdbcType="DECIMAL" property="fee" />
+    <result column="broker_profit" jdbcType="DECIMAL" property="brokerProfit" />
+    <result column="exchange_profit" jdbcType="DECIMAL" property="exchangeProfit" />
+    <result column="payment_profit" jdbcType="DECIMAL" property="paymentProfit" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from profit_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.ProfitDetail">
+    insert into profit_detail (id, coin, biz_code, 
+      biz_promoter_type, biz_promoter_code, biz_time, 
+      price, volume, turnover, 
+      fee, broker_profit, exchange_profit, 
+      payment_profit, create_time)
+    values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{bizCode,jdbcType=VARCHAR}, 
+      #{bizPromoterType,jdbcType=VARCHAR}, #{bizPromoterCode,jdbcType=VARCHAR}, #{bizTime,jdbcType=TIMESTAMP}, 
+      #{price,jdbcType=DECIMAL}, #{volume,jdbcType=DECIMAL}, #{turnover,jdbcType=DECIMAL}, 
+      #{fee,jdbcType=DECIMAL}, #{brokerProfit,jdbcType=DECIMAL}, #{exchangeProfit,jdbcType=DECIMAL}, 
+      #{paymentProfit,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.ProfitDetail">
+    update profit_detail
+    set coin = #{coin,jdbcType=VARCHAR},
+      biz_code = #{bizCode,jdbcType=VARCHAR},
+      biz_promoter_type = #{bizPromoterType,jdbcType=VARCHAR},
+      biz_promoter_code = #{bizPromoterCode,jdbcType=VARCHAR},
+      biz_time = #{bizTime,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=DECIMAL},
+      volume = #{volume,jdbcType=DECIMAL},
+      turnover = #{turnover,jdbcType=DECIMAL},
+      fee = #{fee,jdbcType=DECIMAL},
+      broker_profit = #{brokerProfit,jdbcType=DECIMAL},
+      exchange_profit = #{exchangeProfit,jdbcType=DECIMAL},
+      payment_profit = #{paymentProfit,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, coin, biz_code, biz_promoter_type, biz_promoter_code, biz_time, price, 
+    volume, turnover, fee, broker_profit, exchange_profit, payment_profit, create_time
+    from profit_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, coin, biz_code, biz_promoter_type, biz_promoter_code, biz_time, price, 
+    volume, turnover, fee, broker_profit, exchange_profit, payment_profit, create_time
+    from profit_detail
+  </select>
+</mapper>

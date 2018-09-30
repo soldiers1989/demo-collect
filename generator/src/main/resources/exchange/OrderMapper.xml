@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.Order">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="broker_code" jdbcType="VARCHAR" property="brokerCode" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="investor_code" jdbcType="VARCHAR" property="investorCode" />
+    <result column="base_coin" jdbcType="VARCHAR" property="baseCoin" />
+    <result column="trade_coin" jdbcType="VARCHAR" property="tradeCoin" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="side" jdbcType="VARCHAR" property="side" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="threshold" jdbcType="DECIMAL" property="threshold" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="execution_volume" jdbcType="DECIMAL" property="executionVolume" />
+    <result column="leaves_volume" jdbcType="DECIMAL" property="leavesVolume" />
+    <result column="turnover" jdbcType="DECIMAL" property="turnover" />
+    <result column="avg_price" jdbcType="DECIMAL" property="avgPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.Order">
+    insert into order (id, broker_code, order_no, 
+      investor_code, base_coin, trade_coin, 
+      order_type, side, price, 
+      volume, threshold, status, 
+      execution_volume, leaves_volume, turnover, 
+      avg_price, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{brokerCode,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{investorCode,jdbcType=VARCHAR}, #{baseCoin,jdbcType=VARCHAR}, #{tradeCoin,jdbcType=VARCHAR}, 
+      #{orderType,jdbcType=INTEGER}, #{side,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{volume,jdbcType=DECIMAL}, #{threshold,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{executionVolume,jdbcType=DECIMAL}, #{leavesVolume,jdbcType=DECIMAL}, #{turnover,jdbcType=DECIMAL}, 
+      #{avgPrice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.Order">
+    update order
+    set broker_code = #{brokerCode,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      investor_code = #{investorCode,jdbcType=VARCHAR},
+      base_coin = #{baseCoin,jdbcType=VARCHAR},
+      trade_coin = #{tradeCoin,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=INTEGER},
+      side = #{side,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      volume = #{volume,jdbcType=DECIMAL},
+      threshold = #{threshold,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      execution_volume = #{executionVolume,jdbcType=DECIMAL},
+      leaves_volume = #{leavesVolume,jdbcType=DECIMAL},
+      turnover = #{turnover,jdbcType=DECIMAL},
+      avg_price = #{avgPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, broker_code, order_no, investor_code, base_coin, trade_coin, order_type, 
+    side, price, volume, threshold, status, execution_volume, leaves_volume, turnover, 
+    avg_price, create_time, update_time
+    from order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, broker_code, order_no, investor_code, base_coin, trade_coin, order_type, 
+    side, price, volume, threshold, status, execution_volume, leaves_volume, turnover, 
+    avg_price, create_time, update_time
+    from order
+  </select>
+</mapper>

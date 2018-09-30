@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.BrokerTradeZoneMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.BrokerTradeZone">
+    <id column="broker_code" jdbcType="VARCHAR" property="brokerCode" />
+    <id column="base_coin" jdbcType="VARCHAR" property="baseCoin" />
+    <id column="trade_coin" jdbcType="VARCHAR" property="tradeCoin" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from broker_trade_zone
+    where broker_code = #{brokerCode,jdbcType=VARCHAR}
+      and base_coin = #{baseCoin,jdbcType=VARCHAR}
+      and trade_coin = #{tradeCoin,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.BrokerTradeZone">
+    insert into broker_trade_zone (broker_code, base_coin, trade_coin, 
+      create_time, create_user_id)
+    values (#{brokerCode,jdbcType=VARCHAR}, #{baseCoin,jdbcType=VARCHAR}, #{tradeCoin,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.BrokerTradeZone">
+    update broker_trade_zone
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER}
+    where broker_code = #{brokerCode,jdbcType=VARCHAR}
+      and base_coin = #{baseCoin,jdbcType=VARCHAR}
+      and trade_coin = #{tradeCoin,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select broker_code, base_coin, trade_coin, create_time, create_user_id
+    from broker_trade_zone
+    where broker_code = #{brokerCode,jdbcType=VARCHAR}
+      and base_coin = #{baseCoin,jdbcType=VARCHAR}
+      and trade_coin = #{tradeCoin,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select broker_code, base_coin, trade_coin, create_time, create_user_id
+    from broker_trade_zone
+  </select>
+</mapper>

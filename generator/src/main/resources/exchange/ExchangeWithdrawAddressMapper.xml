@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.ExchangeWithdrawAddressMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.ExchangeWithdrawAddress">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exchange_withdraw_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.ExchangeWithdrawAddress">
+    insert into exchange_withdraw_address (id, coin, address, 
+      tag)
+    values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.ExchangeWithdrawAddress">
+    update exchange_withdraw_address
+    set coin = #{coin,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, coin, address, tag
+    from exchange_withdraw_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, coin, address, tag
+    from exchange_withdraw_address
+  </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.CoinMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.Coin">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="is_base_coin" jdbcType="BIT" property="isBaseCoin" />
+    <result column="is_ecr20" jdbcType="BIT" property="isEcr20" />
+    <result column="risk_ranking" jdbcType="INTEGER" property="riskRanking" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="icon" jdbcType="LONGVARCHAR" property="icon" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from coin
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.Coin">
+    insert into coin (code, name, is_base_coin, 
+      is_ecr20, risk_ranking, display_order, 
+      icon)
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{isBaseCoin,jdbcType=BIT}, 
+      #{isEcr20,jdbcType=BIT}, #{riskRanking,jdbcType=INTEGER}, #{displayOrder,jdbcType=INTEGER}, 
+      #{icon,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.Coin">
+    update coin
+    set name = #{name,jdbcType=VARCHAR},
+      is_base_coin = #{isBaseCoin,jdbcType=BIT},
+      is_ecr20 = #{isEcr20,jdbcType=BIT},
+      risk_ranking = #{riskRanking,jdbcType=INTEGER},
+      display_order = #{displayOrder,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=LONGVARCHAR}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select code, name, is_base_coin, is_ecr20, risk_ranking, display_order, icon
+    from coin
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select code, name, is_base_coin, is_ecr20, risk_ranking, display_order, icon
+    from coin
+  </select>
+</mapper>

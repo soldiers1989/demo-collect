@@ -6,4 +6,7 @@ include 'demo-ice'
 include 'demo-eth'
 include 'demo-netty'
 include 'demo-dapp'
+include 'demo-annotation'
+include 'demo-protobuf'
+include 'stream'
 

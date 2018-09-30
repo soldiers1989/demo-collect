@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.TradeZoneMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.TradeZone">
+    <id column="base_coin" jdbcType="VARCHAR" property="baseCoin" />
+    <id column="trade_coin" jdbcType="VARCHAR" property="tradeCoin" />
+    <result column="precision" jdbcType="INTEGER" property="precision" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from trade_zone
+    where base_coin = #{baseCoin,jdbcType=VARCHAR}
+      and trade_coin = #{tradeCoin,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.TradeZone">
+    insert into trade_zone (base_coin, trade_coin, precision, 
+      display_order)
+    values (#{baseCoin,jdbcType=VARCHAR}, #{tradeCoin,jdbcType=VARCHAR}, #{precision,jdbcType=INTEGER}, 
+      #{displayOrder,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.TradeZone">
+    update trade_zone
+    set precision = #{precision,jdbcType=INTEGER},
+      display_order = #{displayOrder,jdbcType=INTEGER}
+    where base_coin = #{baseCoin,jdbcType=VARCHAR}
+      and trade_coin = #{tradeCoin,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select base_coin, trade_coin, precision, display_order
+    from trade_zone
+    where base_coin = #{baseCoin,jdbcType=VARCHAR}
+      and trade_coin = #{tradeCoin,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select base_coin, trade_coin, precision, display_order
+    from trade_zone
+  </select>
+</mapper>

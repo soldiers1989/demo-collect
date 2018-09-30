@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.Quote15MinMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.Quote15Min">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="base_coin" jdbcType="VARCHAR" property="baseCoin" />
+    <result column="trade_coin" jdbcType="VARCHAR" property="tradeCoin" />
+    <result column="quote_time" jdbcType="TIMESTAMP" property="quoteTime" />
+    <result column="opening" jdbcType="DECIMAL" property="opening" />
+    <result column="closing" jdbcType="DECIMAL" property="closing" />
+    <result column="highest" jdbcType="DECIMAL" property="highest" />
+    <result column="lowest" jdbcType="DECIMAL" property="lowest" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="turnover" jdbcType="DECIMAL" property="turnover" />
+    <result column="avg_price" jdbcType="DECIMAL" property="avgPrice" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from quote_15_min
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.Quote15Min">
+    insert into quote_15_min (id, base_coin, trade_coin, 
+      quote_time, opening, closing, 
+      highest, lowest, volume, 
+      turnover, avg_price)
+    values (#{id,jdbcType=INTEGER}, #{baseCoin,jdbcType=VARCHAR}, #{tradeCoin,jdbcType=VARCHAR}, 
+      #{quoteTime,jdbcType=TIMESTAMP}, #{opening,jdbcType=DECIMAL}, #{closing,jdbcType=DECIMAL}, 
+      #{highest,jdbcType=DECIMAL}, #{lowest,jdbcType=DECIMAL}, #{volume,jdbcType=DECIMAL}, 
+      #{turnover,jdbcType=DECIMAL}, #{avgPrice,jdbcType=DECIMAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.Quote15Min">
+    update quote_15_min
+    set base_coin = #{baseCoin,jdbcType=VARCHAR},
+      trade_coin = #{tradeCoin,jdbcType=VARCHAR},
+      quote_time = #{quoteTime,jdbcType=TIMESTAMP},
+      opening = #{opening,jdbcType=DECIMAL},
+      closing = #{closing,jdbcType=DECIMAL},
+      highest = #{highest,jdbcType=DECIMAL},
+      lowest = #{lowest,jdbcType=DECIMAL},
+      volume = #{volume,jdbcType=DECIMAL},
+      turnover = #{turnover,jdbcType=DECIMAL},
+      avg_price = #{avgPrice,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, base_coin, trade_coin, quote_time, opening, closing, highest, lowest, 
+    volume, turnover, avg_price
+    from quote_15_min
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, base_coin, trade_coin, quote_time, opening, closing, highest, lowest, 
+    volume, turnover, avg_price
+    from quote_15_min
+  </select>
+</mapper>

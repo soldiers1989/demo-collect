@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.ExchangeAccountDetailMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.ExchangeAccountDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+    <result column="biz_time" jdbcType="TIMESTAMP" property="bizTime" />
+    <result column="biz_seq_no" jdbcType="VARCHAR" property="bizSeqNo" />
+    <result column="is_income" jdbcType="BIT" property="isIncome" />
+    <result column="item" jdbcType="VARCHAR" property="item" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exchange_account_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.ExchangeAccountDetail">
+    insert into exchange_account_detail (id, coin, biz_code, 
+      biz_time, biz_seq_no, is_income, 
+      item, volume, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{bizCode,jdbcType=VARCHAR}, 
+      #{bizTime,jdbcType=TIMESTAMP}, #{bizSeqNo,jdbcType=VARCHAR}, #{isIncome,jdbcType=BIT}, 
+      #{item,jdbcType=VARCHAR}, #{volume,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.ExchangeAccountDetail">
+    update exchange_account_detail
+    set coin = #{coin,jdbcType=VARCHAR},
+      biz_code = #{bizCode,jdbcType=VARCHAR},
+      biz_time = #{bizTime,jdbcType=TIMESTAMP},
+      biz_seq_no = #{bizSeqNo,jdbcType=VARCHAR},
+      is_income = #{isIncome,jdbcType=BIT},
+      item = #{item,jdbcType=VARCHAR},
+      volume = #{volume,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, coin, biz_code, biz_time, biz_seq_no, is_income, item, volume, create_time
+    from exchange_account_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, coin, biz_code, biz_time, biz_seq_no, is_income, item, volume, create_time
+    from exchange_account_detail
+  </select>
+</mapper>

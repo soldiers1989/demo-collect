@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.BrokerDepositAddressMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.BrokerDepositAddress">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="broker_code" jdbcType="VARCHAR" property="brokerCode" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from broker_deposit_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.BrokerDepositAddress">
+    insert into broker_deposit_address (id, broker_code, coin, 
+      address)
+    values (#{id,jdbcType=INTEGER}, #{brokerCode,jdbcType=VARCHAR}, #{coin,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.BrokerDepositAddress">
+    update broker_deposit_address
+    set broker_code = #{brokerCode,jdbcType=VARCHAR},
+      coin = #{coin,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, broker_code, coin, address
+    from broker_deposit_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, broker_code, coin, address
+    from broker_deposit_address
+  </select>
+</mapper>

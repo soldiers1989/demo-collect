@@ -50,7 +50,7 @@
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="immutable" value="false"/>
             <property name="modelOnly" value="false"/>
-            <property name="useActualColumnNames" value="true"/>
+            <property name="useActualColumnNames" value="false"/>
         </table>
     </context>
 </generatorConfiguration>

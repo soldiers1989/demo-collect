@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.FutureWithdrawFeeMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.FutureWithdrawFee">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="withdrawer" jdbcType="VARCHAR" property="withdrawer" />
+    <result column="broker_fee" jdbcType="DECIMAL" property="brokerFee" />
+    <result column="exchange_fee" jdbcType="DECIMAL" property="exchangeFee" />
+    <result column="payment_fee" jdbcType="DECIMAL" property="paymentFee" />
+    <result column="future_time" jdbcType="TIMESTAMP" property="futureTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="INTEGER" property="updateUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from future_withdraw_fee
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.FutureWithdrawFee">
+    insert into future_withdraw_fee (id, coin, withdrawer, 
+      broker_fee, exchange_fee, payment_fee, 
+      future_time, create_time, create_user_id, 
+      update_time, update_user_id)
+    values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{withdrawer,jdbcType=VARCHAR}, 
+      #{brokerFee,jdbcType=DECIMAL}, #{exchangeFee,jdbcType=DECIMAL}, #{paymentFee,jdbcType=DECIMAL}, 
+      #{futureTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.FutureWithdrawFee">
+    update future_withdraw_fee
+    set coin = #{coin,jdbcType=VARCHAR},
+      withdrawer = #{withdrawer,jdbcType=VARCHAR},
+      broker_fee = #{brokerFee,jdbcType=DECIMAL},
+      exchange_fee = #{exchangeFee,jdbcType=DECIMAL},
+      payment_fee = #{paymentFee,jdbcType=DECIMAL},
+      future_time = #{futureTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, coin, withdrawer, broker_fee, exchange_fee, payment_fee, future_time, 
+    create_time, create_user_id, update_time, update_user_id
+    from future_withdraw_fee
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, coin, withdrawer, broker_fee, exchange_fee, payment_fee, future_time, 
+    create_time, create_user_id, update_time, update_user_id
+    from future_withdraw_fee
+  </select>
+</mapper>

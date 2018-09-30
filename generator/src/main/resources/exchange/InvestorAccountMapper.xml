@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.InvestorAccountMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.InvestorAccount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="investor_code" jdbcType="VARCHAR" property="investorCode" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="locked" jdbcType="DECIMAL" property="locked" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from investor_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.InvestorAccount">
+    insert into investor_account (id, investor_code, coin, 
+      balance, locked, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{investorCode,jdbcType=VARCHAR}, #{coin,jdbcType=VARCHAR}, 
+      #{balance,jdbcType=DECIMAL}, #{locked,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.InvestorAccount">
+    update investor_account
+    set investor_code = #{investorCode,jdbcType=VARCHAR},
+      coin = #{coin,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      locked = #{locked,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, investor_code, coin, balance, locked, create_time, update_time
+    from investor_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, investor_code, coin, balance, locked, create_time, update_time
+    from investor_account
+  </select>
+</mapper>

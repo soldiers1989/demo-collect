@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.HotWalletAlarmMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.HotWalletAlarm">
+    <id column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="threshold" jdbcType="DECIMAL" property="threshold" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hot_wallet_alarm
+    where coin = #{coin,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.HotWalletAlarm">
+    insert into hot_wallet_alarm (coin, threshold, create_time, 
+      create_user_id)
+    values (#{coin,jdbcType=VARCHAR}, #{threshold,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.HotWalletAlarm">
+    update hot_wallet_alarm
+    set threshold = #{threshold,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER}
+    where coin = #{coin,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select coin, threshold, create_time, create_user_id
+    from hot_wallet_alarm
+    where coin = #{coin,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select coin, threshold, create_time, create_user_id
+    from hot_wallet_alarm
+  </select>
+</mapper>

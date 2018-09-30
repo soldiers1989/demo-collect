@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.CoinHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.CoinHistory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="op_type" jdbcType="VARCHAR" property="opType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coin_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.CoinHistory">
+    insert into coin_history (id, code, op_type, 
+      create_time, create_user_id)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.CoinHistory">
+    update coin_history
+    set code = #{code,jdbcType=VARCHAR},
+      op_type = #{opType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, code, op_type, create_time, create_user_id
+    from coin_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, code, op_type, create_time, create_user_id
+    from coin_history
+  </select>
+</mapper>

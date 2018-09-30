@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.BrokerInvestorStatsMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.BrokerInvestorStats">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="broker_code" jdbcType="VARCHAR" property="brokerCode" />
+    <result column="biz_code" jdbcType="VARCHAR" property="bizCode" />
+    <result column="base_coin" jdbcType="VARCHAR" property="baseCoin" />
+    <result column="trade_coin" jdbcType="VARCHAR" property="tradeCoin" />
+    <result column="total_volume" jdbcType="DECIMAL" property="totalVolume" />
+    <result column="total_turnover" jdbcType="DECIMAL" property="totalTurnover" />
+    <result column="total_orders" jdbcType="INTEGER" property="totalOrders" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from broker_investor_stats
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.BrokerInvestorStats">
+    insert into broker_investor_stats (id, broker_code, biz_code, 
+      base_coin, trade_coin, total_volume, 
+      total_turnover, total_orders)
+    values (#{id,jdbcType=INTEGER}, #{brokerCode,jdbcType=VARCHAR}, #{bizCode,jdbcType=VARCHAR}, 
+      #{baseCoin,jdbcType=VARCHAR}, #{tradeCoin,jdbcType=VARCHAR}, #{totalVolume,jdbcType=DECIMAL}, 
+      #{totalTurnover,jdbcType=DECIMAL}, #{totalOrders,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.BrokerInvestorStats">
+    update broker_investor_stats
+    set broker_code = #{brokerCode,jdbcType=VARCHAR},
+      biz_code = #{bizCode,jdbcType=VARCHAR},
+      base_coin = #{baseCoin,jdbcType=VARCHAR},
+      trade_coin = #{tradeCoin,jdbcType=VARCHAR},
+      total_volume = #{totalVolume,jdbcType=DECIMAL},
+      total_turnover = #{totalTurnover,jdbcType=DECIMAL},
+      total_orders = #{totalOrders,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, broker_code, biz_code, base_coin, trade_coin, total_volume, total_turnover, 
+    total_orders
+    from broker_investor_stats
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, broker_code, biz_code, base_coin, trade_coin, total_volume, total_turnover, 
+    total_orders
+    from broker_investor_stats
+  </select>
+</mapper>

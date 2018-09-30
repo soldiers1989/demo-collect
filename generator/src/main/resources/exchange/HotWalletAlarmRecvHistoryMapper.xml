@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.HotWalletAlarmRecvHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.HotWalletAlarmRecvHistory">
+    <id column="hot_wallet_alarm_history_id" jdbcType="INTEGER" property="hotWalletAlarmHistoryId" />
+    <id column="receiver_user_id" jdbcType="INTEGER" property="receiverUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from hot_wallet_alarm_recv_history
+    where hot_wallet_alarm_history_id = #{hotWalletAlarmHistoryId,jdbcType=INTEGER}
+      and receiver_user_id = #{receiverUserId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.HotWalletAlarmRecvHistory">
+    insert into hot_wallet_alarm_recv_history (hot_wallet_alarm_history_id, receiver_user_id
+      )
+    values (#{hotWalletAlarmHistoryId,jdbcType=INTEGER}, #{receiverUserId,jdbcType=INTEGER}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select hot_wallet_alarm_history_id, receiver_user_id
+    from hot_wallet_alarm_recv_history
+  </select>
+</mapper>

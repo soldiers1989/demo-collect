@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.BrokerWithdrawHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.BrokerWithdrawHistory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="broker_code" jdbcType="VARCHAR" property="brokerCode" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="to_address" jdbcType="VARCHAR" property="toAddress" />
+    <result column="broker_seq_no" jdbcType="VARCHAR" property="brokerSeqNo" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="fee" jdbcType="DECIMAL" property="fee" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="audit_comment" jdbcType="VARCHAR" property="auditComment" />
+    <result column="audit_user_id" jdbcType="INTEGER" property="auditUserId" />
+    <result column="withdraw_time" jdbcType="TIMESTAMP" property="withdrawTime" />
+    <result column="withdraw_hash" jdbcType="VARCHAR" property="withdrawHash" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from broker_withdraw_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.BrokerWithdrawHistory">
+    insert into broker_withdraw_history (id, broker_code, coin, 
+      volume, to_address, broker_seq_no, 
+      apply_time, fee, status, 
+      audit_time, audit_comment, audit_user_id, 
+      withdraw_time, withdraw_hash, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{brokerCode,jdbcType=VARCHAR}, #{coin,jdbcType=VARCHAR}, 
+      #{volume,jdbcType=DECIMAL}, #{toAddress,jdbcType=VARCHAR}, #{brokerSeqNo,jdbcType=VARCHAR}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{fee,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{auditTime,jdbcType=TIMESTAMP}, #{auditComment,jdbcType=VARCHAR}, #{auditUserId,jdbcType=INTEGER}, 
+      #{withdrawTime,jdbcType=TIMESTAMP}, #{withdrawHash,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.BrokerWithdrawHistory">
+    update broker_withdraw_history
+    set broker_code = #{brokerCode,jdbcType=VARCHAR},
+      coin = #{coin,jdbcType=VARCHAR},
+      volume = #{volume,jdbcType=DECIMAL},
+      to_address = #{toAddress,jdbcType=VARCHAR},
+      broker_seq_no = #{brokerSeqNo,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      fee = #{fee,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      audit_comment = #{auditComment,jdbcType=VARCHAR},
+      audit_user_id = #{auditUserId,jdbcType=INTEGER},
+      withdraw_time = #{withdrawTime,jdbcType=TIMESTAMP},
+      withdraw_hash = #{withdrawHash,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, broker_code, coin, volume, to_address, broker_seq_no, apply_time, fee, 
+    status, audit_time, audit_comment, audit_user_id, withdraw_time, withdraw_hash, create_time
+    from broker_withdraw_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, broker_code, coin, volume, to_address, broker_seq_no, apply_time, fee, 
+    status, audit_time, audit_comment, audit_user_id, withdraw_time, withdraw_hash, create_time
+    from broker_withdraw_history
+  </select>
+</mapper>

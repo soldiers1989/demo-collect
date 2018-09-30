@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.ExchangeAccountMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.ExchangeAccount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="cum_income" jdbcType="DECIMAL" property="cumIncome" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="locked" jdbcType="DECIMAL" property="locked" />
+    <result column="cum_withdraw" jdbcType="DECIMAL" property="cumWithdraw" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exchange_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.ExchangeAccount">
+    insert into exchange_account (id, coin, cum_income, 
+      balance, locked, cum_withdraw, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{cumIncome,jdbcType=DECIMAL}, 
+      #{balance,jdbcType=DECIMAL}, #{locked,jdbcType=DECIMAL}, #{cumWithdraw,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.ExchangeAccount">
+    update exchange_account
+    set coin = #{coin,jdbcType=VARCHAR},
+      cum_income = #{cumIncome,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      locked = #{locked,jdbcType=DECIMAL},
+      cum_withdraw = #{cumWithdraw,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, coin, cum_income, balance, locked, cum_withdraw, create_time, update_time
+    from exchange_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, coin, cum_income, balance, locked, cum_withdraw, create_time, update_time
+    from exchange_account
+  </select>
+</mapper>

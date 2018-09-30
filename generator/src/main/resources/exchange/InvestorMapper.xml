@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juzix.jungle.exchange.dao.InvestorMapper">
+  <resultMap id="BaseResultMap" type="com.juzix.jungle.exchange.entity.Investor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="broker_code" jdbcType="VARCHAR" property="brokerCode" />
+    <result column="fund_password" jdbcType="VARCHAR" property="fundPassword" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="id_type" jdbcType="INTEGER" property="idType" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="is_locked" jdbcType="BIT" property="isLocked" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from investor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzix.jungle.exchange.entity.Investor">
+    insert into investor (id, code, broker_code, 
+      fund_password, salt, real_name, 
+      country_code, id_type, id_no, 
+      phone, email, is_locked, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{brokerCode,jdbcType=VARCHAR}, 
+      #{fundPassword,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{countryCode,jdbcType=VARCHAR}, #{idType,jdbcType=INTEGER}, #{idNo,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isLocked,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.juzix.jungle.exchange.entity.Investor">
+    update investor
+    set code = #{code,jdbcType=VARCHAR},
+      broker_code = #{brokerCode,jdbcType=VARCHAR},
+      fund_password = #{fundPassword,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      country_code = #{countryCode,jdbcType=VARCHAR},
+      id_type = #{idType,jdbcType=INTEGER},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      is_locked = #{isLocked,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, code, broker_code, fund_password, salt, real_name, country_code, id_type, 
+    id_no, phone, email, is_locked, create_time, update_time
+    from investor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, code, broker_code, fund_password, salt, real_name, country_code, id_type, 
+    id_no, phone, email, is_locked, create_time, update_time
+    from investor
+  </select>
+</mapper>
